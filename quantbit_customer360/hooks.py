@@ -13,22 +13,21 @@ scheduler_events = {
 	"daily": ["quantbit_customer360.api.customer_360.calculate_all_customer_grades"]
 }
 
+add_to_apps_screen = [
+	{
+		"name": "quantbit_customer360",
+		"logo": "/assets/frappe/images/frappe-framework-logo.svg",
+		"title": "Customer 360",
+		"route": "/app/customer360",
+	}
+]
+
 # Apps
 # ------------------
 
 # required_apps = []
 
 # Each item in the list will be shown as an app in the apps page
-# add_to_apps_screen = [
-# 	{
-# 		"name": "quantbit_customer360",
-# 		"logo": "/assets/quantbit_customer360/logo.png",
-# 		"title": "Quantbit Customer360",
-# 		"route": "/quantbit_customer360",
-# 		"has_permission": "quantbit_customer360.api.permission.has_app_permission"
-# 	}
-# ]
-
 # Includes in <head>
 # ------------------
 

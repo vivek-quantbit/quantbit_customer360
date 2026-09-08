@@ -3,15 +3,20 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 frappe.pages['customer360'].on_page_load = function(wrapper) {
-	var page = frappe.ui.make_app_page({
+	frappe.ui.make_app_page({
 		parent: wrapper,
 		title: 'Customer 360',
 		single_column: true
 	});
 
-
 	// Render base HTML
-	$(wrapper).find('.page-content').html(frappe.render_template('customer_360', {}));
+	$(wrapper).find('.layout-main-section').html(frappe.render_template('customer360', {}));
+	$(wrapper).find('.c360-back').on('click keydown', function(event) {
+		if (event.type === 'click' || event.key === 'Enter' || event.key === ' ') {
+			event.preventDefault();
+			frappe.set_route('List', 'Customer');
+		}
+	});
 
 	// Bind open customer button (will be set after load)
 	frappe.pages['customer360'].customer_name = null;
@@ -63,6 +68,10 @@ var C360 = {
 			this._setLoading(false);
 		}).catch(err => {
 			console.error('Customer 360 load error:', err);
+			$('.c360-grid').css('opacity', 1);
+			$('#c360-flags').html(
+				'<span class="flag-tag flag-red">Unable to load customer data. Check the error log.</span>'
+			);
 			frappe.msgprint('Failed to load Customer 360 data. Please try again.');
 			this._setLoading(false);
 		});
