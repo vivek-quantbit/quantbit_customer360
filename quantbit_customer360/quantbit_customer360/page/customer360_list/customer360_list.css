@@ -1,0 +1,11 @@
+.c360-list { padding: 20px; }
+.c360-list-toolbar { display: flex; gap: 10px; margin-bottom: 16px; }
+.c360-list-search { max-width: 420px; }
+.c360-list-status { padding: 24px; text-align: center; }
+.c360-list-table-wrap { background: var(--card-bg, #fff); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+.c360-list-table { margin: 0; }
+.c360-list-table th { font-size: 12px; color: var(--text-muted); }
+.c360-list-table td { vertical-align: middle; }
+.c360-list-name { color: var(--text-color); font-weight: 600; }
+.c360-list-grade { display: inline-flex; width: 28px; height: 28px; align-items: center; justify-content: center; border-radius: 50%; background: var(--subtle-fg); font-weight: 700; }
+@media (max-width: 767px) { .c360-list { padding: 12px; } .c360-list-table th:nth-child(2), .c360-list-table td:nth-child(2), .c360-list-table th:nth-child(3), .c360-list-table td:nth-child(3) { display: none; } }

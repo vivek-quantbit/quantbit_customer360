@@ -22,6 +22,9 @@ add_to_apps_screen = [
 	}
 ]
 
+doctype_js = {"Customer": "public/js/customer.js"}
+doctype_list_js = {"Customer": "public/js/customer_list.js"}
+
 # Apps
 # ------------------
 

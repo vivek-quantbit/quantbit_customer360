@@ -14,7 +14,7 @@ frappe.pages['customer360'].on_page_load = function(wrapper) {
 	$(wrapper).find('.c360-back').on('click keydown', function(event) {
 		if (event.type === 'click' || event.key === 'Enter' || event.key === ' ') {
 			event.preventDefault();
-			frappe.set_route('List', 'Customer');
+			frappe.set_route('customer360-list');
 		}
 	});
 

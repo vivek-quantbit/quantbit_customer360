@@ -14,6 +14,33 @@ from datetime import date
 # ─── 1. Master Data ──────────────────────────────────────────────────────────
 
 @frappe.whitelist()
+def customer_360_list(search=None, start=0, page_length=100):
+    """Return customers visible to the current user for the dedicated 360 list."""
+    search = (search or "").strip()
+    or_filters = None
+    if search:
+        pattern = f"%{search}%"
+        or_filters = {"name": ["like", pattern], "customer_name": ["like", pattern]}
+
+    return frappe.get_list(
+        "Customer",
+        fields=[
+            "name",
+            "customer_name",
+            "customer_group",
+            "territory",
+            "sales_zone",
+            "customer_grade",
+        ],
+        filters={"disabled": 0},
+        or_filters=or_filters,
+        order_by="customer_name asc",
+        start=cint(start),
+        page_length=min(max(cint(page_length), 1), 100),
+    )
+
+
+@frappe.whitelist()
 def customer_360_master(customer):
     """
     Returns customer master fields + KYC + strategic fields.
