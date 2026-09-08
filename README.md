@@ -12,6 +12,17 @@ bench get-app $URL_OF_THIS_REPO --branch develop
 bench install-app quantbit_customer360
 ```
 
+After installation or migration, open `/customer360`. The route sends authenticated
+Desk users to the Customer 360 page and preserves the optional customer query:
+
+```text
+/customer360?customer=CUST-0001
+```
+
+If no customer is supplied, the page opens a Customer selector. Access is limited
+to Sales User, Sales Manager, and System Manager roles, and the API enforces the
+current user's Customer read permission.
+
 ### Contributing
 
 This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:

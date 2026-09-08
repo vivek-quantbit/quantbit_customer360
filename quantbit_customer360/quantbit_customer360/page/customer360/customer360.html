@@ -1,0 +1,315 @@
+<div class="customer-360-wrapper">
+
+	<!-- Header Bar -->
+	<div class="c360-header">
+		<div class="c360-header-left">
+			<div class="c360-back" onclick="frappe.set_route('List', 'Customer')">
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+			</div>
+			<div class="c360-title-block">
+				<div class="c360-label">Customer 360</div>
+				<div class="c360-customer-name" id="c360-customer-name">—</div>
+			</div>
+		</div>
+		<div class="c360-header-right">
+			<div class="c360-meta-chip" id="c360-zone-chip">—</div>
+			<div class="c360-meta-chip" id="c360-category-chip">—</div>
+			<div class="c360-meta-chip kyc-chip" id="c360-kyc-chip">—</div>
+			<button class="c360-open-btn" id="c360-open-customer">Open Customer</button>
+		</div>
+	</div>
+
+	<!-- Alert Flags -->
+	<div class="c360-flags" id="c360-flags"></div>
+
+	<!-- KPI Row -->
+	<div class="c360-kpi-row">
+		<div class="c360-kpi" id="kpi-lifetime">
+			<div class="kpi-value">—</div>
+			<div class="kpi-label">Lifetime Revenue</div>
+		</div>
+		<div class="c360-kpi" id="kpi-ytd">
+			<div class="kpi-value">—</div>
+			<div class="kpi-label">This Year</div>
+		</div>
+		<div class="c360-kpi" id="kpi-outstanding">
+			<div class="kpi-value">—</div>
+			<div class="kpi-label">Outstanding</div>
+		</div>
+		<div class="c360-kpi" id="kpi-overdue">
+			<div class="kpi-value">—</div>
+			<div class="kpi-label">Overdue</div>
+		</div>
+		<div class="c360-kpi" id="kpi-pay-delay">
+			<div class="kpi-value">—</div>
+			<div class="kpi-label">Avg Pay Delay</div>
+		</div>
+		<div class="c360-kpi grade-kpi" id="kpi-grade">
+			<div class="kpi-value grade-value" id="grade-badge">—</div>
+			<div class="kpi-label">Customer Grade</div>
+		</div>
+	</div>
+
+	<!-- Main Grid -->
+	<div class="c360-grid">
+
+		<!-- Financial Panel -->
+		<div class="c360-card" id="panel-financial">
+			<div class="card-header">
+				<span class="card-title">Financial</span>
+				<span class="card-subtitle" id="credit-util-label">—</span>
+			</div>
+			<div class="card-body">
+				<div class="aging-block">
+					<div class="aging-title">Payment Aging</div>
+					<div class="aging-row" id="aging-0-30">
+						<span class="aging-label">0–30 days</span>
+						<div class="aging-bar-wrap"><div class="aging-bar bar-green" style="width:0%"></div></div>
+						<span class="aging-amount">—</span>
+					</div>
+					<div class="aging-row" id="aging-31-60">
+						<span class="aging-label">31–60 days</span>
+						<div class="aging-bar-wrap"><div class="aging-bar bar-amber" style="width:0%"></div></div>
+						<span class="aging-amount">—</span>
+					</div>
+					<div class="aging-row" id="aging-61-90">
+						<span class="aging-label">61–90 days</span>
+						<div class="aging-bar-wrap"><div class="aging-bar bar-orange" style="width:0%"></div></div>
+						<span class="aging-amount">—</span>
+					</div>
+					<div class="aging-row" id="aging-90plus">
+						<span class="aging-label">90+ days</span>
+						<div class="aging-bar-wrap"><div class="aging-bar bar-red" style="width:0%"></div></div>
+						<span class="aging-amount">—</span>
+					</div>
+				</div>
+				<div class="credit-block">
+					<div class="credit-row">
+						<span>Credit Limit</span><strong id="val-credit-limit">—</strong>
+					</div>
+					<div class="credit-bar-wrap">
+						<div class="credit-bar-fill" id="credit-bar" style="width:0%"></div>
+					</div>
+					<div class="credit-row small">
+						<span id="val-credit-utilized">Utilized: —</span>
+						<span id="val-credit-available">Available: —</span>
+					</div>
+				</div>
+				<div class="fin-row-group">
+					<div class="fin-row"><span>Avg Discount Given</span><strong id="val-discount">—</strong></div>
+					<div class="fin-row"><span>Credit Notes YTD</span><strong id="val-credit-notes">—</strong></div>
+					<div class="fin-row"><span>Cheque Bounces</span><strong id="val-bounces">—</strong></div>
+					<div class="fin-row"><span>Dunning Phase</span><strong id="val-dunning">—</strong></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Sales Activity Panel -->
+		<div class="c360-card" id="panel-sales">
+			<div class="card-header">
+				<span class="card-title">Sales Activity</span>
+				<span class="card-subtitle" id="sales-period-label">Last 6 months</span>
+			</div>
+			<div class="card-body">
+				<div class="sales-stats-row">
+					<div class="sales-stat">
+						<div class="ss-value" id="val-quotations">—</div>
+						<div class="ss-label">Quotations</div>
+					</div>
+					<div class="sales-stat">
+						<div class="ss-value" id="val-converted">—</div>
+						<div class="ss-label">Converted</div>
+					</div>
+					<div class="sales-stat">
+						<div class="ss-value accent" id="val-conv-rate">—</div>
+						<div class="ss-label">Conv. Rate</div>
+					</div>
+				</div>
+				<div class="period-row">
+					<div class="period-item">
+						<span class="pi-label">MTD Orders</span>
+						<span class="pi-value" id="val-mtd">—</span>
+					</div>
+					<div class="period-item">
+						<span class="pi-label">QTD Orders</span>
+						<span class="pi-value" id="val-qtd">—</span>
+					</div>
+					<div class="period-item">
+						<span class="pi-label">YTD Orders</span>
+						<span class="pi-value" id="val-ytd-orders">—</span>
+					</div>
+				</div>
+				<div class="sku-block">
+					<div class="sku-title">Top SKUs Purchased</div>
+					<div id="sku-list" class="sku-list"></div>
+				</div>
+				<div class="fin-row-group">
+					<div class="fin-row"><span>Avg Order Value</span><strong id="val-avg-order">—</strong></div>
+					<div class="fin-row"><span>Order Frequency</span><strong id="val-order-freq">—</strong></div>
+					<div class="fin-row"><span>Last Order Date</span><strong id="val-last-order">—</strong></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Relationship Panel -->
+		<div class="c360-card" id="panel-relationship">
+			<div class="card-header">
+				<span class="card-title">Relationship</span>
+				<span class="card-subtitle" id="val-customer-since-label">—</span>
+			</div>
+			<div class="card-body">
+				<div class="rel-block">
+					<div class="rel-row">
+						<div class="rel-icon">👤</div>
+						<div>
+							<div class="rel-val" id="val-key-contact">—</div>
+							<div class="rel-sub">Key Contact</div>
+						</div>
+					</div>
+					<div class="rel-row">
+						<div class="rel-icon">🧑‍💼</div>
+						<div>
+							<div class="rel-val" id="val-salesperson">—</div>
+							<div class="rel-sub">Assigned Salesperson</div>
+						</div>
+					</div>
+					<div class="rel-row">
+						<div class="rel-icon">📍</div>
+						<div>
+							<div class="rel-val" id="val-territory">—</div>
+							<div class="rel-sub">Territory</div>
+						</div>
+					</div>
+					<div class="rel-row">
+						<div class="rel-icon">🏢</div>
+						<div>
+							<div class="rel-val" id="val-competitors">—</div>
+							<div class="rel-sub">Competitors Known</div>
+						</div>
+					</div>
+					<div class="rel-row">
+						<div class="rel-icon">📅</div>
+						<div>
+							<div class="rel-val" id="val-last-visit">Future scope</div>
+							<div class="rel-sub">Last Physical Visit</div>
+						</div>
+					</div>
+				</div>
+				<div class="tag-block">
+					<div class="tag-row">
+						<span class="info-tag" id="tag-upsell">—</span>
+						<span class="info-tag" id="tag-strategic">—</span>
+						<span class="info-tag" id="tag-wallet">—</span>
+					</div>
+				</div>
+				<div class="fin-row-group">
+					<div class="fin-row"><span>Open Escalations</span><strong id="val-escalations">—</strong></div>
+					<div class="fin-row"><span>Complaints (YTD)</span><strong id="val-complaints">—</strong></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Risk & Compliance Panel -->
+		<div class="c360-card" id="panel-risk">
+			<div class="card-header">
+				<span class="card-title">Risk & Compliance</span>
+			</div>
+			<div class="card-body">
+				<div class="kyc-status-block" id="kyc-status-block">
+					<div class="kyc-icon" id="kyc-icon">📋</div>
+					<div class="kyc-detail">
+						<div class="kyc-status-text" id="kyc-status-text">—</div>
+						<div class="kyc-expiry" id="kyc-expiry-text">—</div>
+					</div>
+				</div>
+				<div class="risk-items">
+					<div class="risk-item" id="risk-credit">
+						<span class="risk-dot dot-grey"></span>
+						<span class="risk-label">Credit Limit</span>
+						<span class="risk-val" id="rval-credit">—</span>
+					</div>
+					<div class="risk-item" id="risk-overdue">
+						<span class="risk-dot dot-grey"></span>
+						<span class="risk-label">Overdue Status</span>
+						<span class="risk-val" id="rval-overdue">—</span>
+					</div>
+					<div class="risk-item" id="risk-dunning">
+						<span class="risk-dot dot-grey"></span>
+						<span class="risk-label">Dunning Status</span>
+						<span class="risk-val" id="rval-dunning">—</span>
+					</div>
+					<div class="risk-item" id="risk-bounce">
+						<span class="risk-dot dot-grey"></span>
+						<span class="risk-label">Cheque Bounces</span>
+						<span class="risk-val" id="rval-bounce">—</span>
+					</div>
+					<div class="risk-item" id="risk-kyc-hist">
+						<span class="risk-dot dot-grey"></span>
+						<span class="risk-label">Last KYC Approval</span>
+						<span class="risk-val" id="rval-kyc-hist">—</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div><!-- end main grid -->
+
+	<!-- Scorecard -->
+	<div class="c360-card c360-scorecard">
+		<div class="card-header">
+			<span class="card-title">Customer Scorecard</span>
+			<span class="scorecard-grade-display">
+				Grade <span class="grade-letter" id="sc-grade">—</span>
+				<span class="grade-score" id="sc-score">— / 100</span>
+				<span class="grade-updated" id="sc-updated">—</span>
+			</span>
+		</div>
+		<div class="scorecard-body">
+			<div class="score-row" id="sc-payment">
+				<span class="sc-label">Payment Behavior</span>
+				<div class="sc-bar-wrap"><div class="sc-bar" style="width:0%"></div></div>
+				<span class="sc-pct">0</span>
+				<span class="sc-weight">× 30%</span>
+				<span class="sc-contrib">= 0</span>
+			</div>
+			<div class="score-row" id="sc-revenue">
+				<span class="sc-label">Revenue Growth</span>
+				<div class="sc-bar-wrap"><div class="sc-bar" style="width:0%"></div></div>
+				<span class="sc-pct">0</span>
+				<span class="sc-weight">× 25%</span>
+				<span class="sc-contrib">= 0</span>
+			</div>
+			<div class="score-row" id="sc-regularity">
+				<span class="sc-label">Order Regularity</span>
+				<div class="sc-bar-wrap"><div class="sc-bar" style="width:0%"></div></div>
+				<span class="sc-pct">0</span>
+				<span class="sc-weight">× 20%</span>
+				<span class="sc-contrib">= 0</span>
+			</div>
+			<div class="score-row" id="sc-engagement">
+				<span class="sc-label">Engagement Level</span>
+				<div class="sc-bar-wrap"><div class="sc-bar" style="width:0%"></div></div>
+				<span class="sc-pct">0</span>
+				<span class="sc-weight">× 15%</span>
+				<span class="sc-contrib">= 0</span>
+			</div>
+			<div class="score-row" id="sc-kyc">
+				<span class="sc-label">KYC Compliance</span>
+				<div class="sc-bar-wrap"><div class="sc-bar" style="width:0%"></div></div>
+				<span class="sc-pct">0</span>
+				<span class="sc-weight">× 10%</span>
+				<span class="sc-contrib">= 0</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- Timeline -->
+	<div class="c360-card c360-timeline-card">
+		<div class="card-header">
+			<span class="card-title">Interaction Timeline</span>
+			<span class="card-subtitle">Last 10 interactions</span>
+		</div>
+		<div class="timeline-body" id="c360-timeline"></div>
+	</div>
+
+</div>

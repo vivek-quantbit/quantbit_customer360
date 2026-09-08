@@ -5,6 +5,14 @@ app_description = "it is customer 360"
 app_email = "support@quantbit.io"
 app_license = "mit"
 
+required_apps = ["erpnext"]
+after_install = "quantbit_customer360.setup.install_customer_fields"
+after_migrate = "quantbit_customer360.setup.install_customer_fields"
+
+scheduler_events = {
+	"daily": ["quantbit_customer360.api.customer_360.calculate_all_customer_grades"]
+}
+
 # Apps
 # ------------------
 
@@ -246,4 +254,3 @@ app_license = "mit"
 # ------------
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
-
