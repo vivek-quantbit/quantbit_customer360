@@ -23,9 +23,16 @@ frappe.pages['customer360'].on_page_load = function(wrapper) {
 };
 
 frappe.pages['customer360'].on_page_show = function(wrapper) {
-	// Get customer from URL param: /customer360?customer=Columbia+Petrochem
-	let params   = frappe.utils.get_url_params();
-	let customer = params.customer || frappe.pages['customer360'].customer_name;
+	// Get customer from /app/customer360?customer=CUST-0001 or route options.
+	const queryCustomer = new URLSearchParams(window.location.search).get('customer');
+	const routeCustomer = frappe.route_options && frappe.route_options.customer;
+	const customer = queryCustomer
+		|| routeCustomer
+		|| frappe.pages['customer360'].customer_name;
+
+	if (routeCustomer) {
+		frappe.route_options = null;
+	}
 
 	if (!customer) {
 		// Show customer picker if no param
@@ -36,6 +43,7 @@ frappe.pages['customer360'].on_page_show = function(wrapper) {
 			options: 'Customer',
 			reqd: 1
 		}, (values) => {
+			frappe.pages['customer360'].customer_name = values.customer;
 			C360.load(values.customer);
 		}, 'Open Customer 360', 'Open');
 		return;
