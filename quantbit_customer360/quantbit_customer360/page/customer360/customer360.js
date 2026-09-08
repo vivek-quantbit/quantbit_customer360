@@ -194,7 +194,7 @@ var C360 = {
 			: 'On time';
 		$('#kpi-pay-delay').find('.kpi-value')
 			.text(delayText)
-			.css('color', f.avg_payment_delay > 15 ? 'var(--amber)' : 'inherit');
+			.css('color', f.avg_payment_delay > 15 ? 'var(--amber)' : '#ffffff');
 
 		// Grade badge
 		let grade = m.customer_grade || '—';

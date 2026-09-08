@@ -182,6 +182,10 @@
 
 .grade-kpi { background: var(--navy-mid); }
 
+#kpi-pay-delay .kpi-value {
+  color: #ffffff;
+}
+
 .grade-value {
   font-size: 32px;
   font-weight: 800;
